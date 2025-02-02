@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-50;
+  }
+}
+
+.prose {
+  max-width: none;
+  color: inherit;
+}
+
+.prose a {
+  @apply text-indigo-600 no-underline hover:underline;
+}
+
+.prose strong {
+  @apply font-semibold;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  @apply font-bold text-gray-900;
+}
+
+.prose p {
+  @apply text-gray-700;
+}
+
+/* RTL Support */
+[dir="rtl"] .prose {
+  text-align: right;
+}
+
+[dir="rtl"] .prose ul,
+[dir="rtl"] .prose ol {
+  padding-right: 1.25em;
+  padding-left: 0;
+}
+
+[dir="rtl"] .prose blockquote {
+  border-left: none;
+  border-right: 4px solid #e5e7eb;
+  padding-left: 0;
+  padding-right: 1em;
+}
