@@ -45,8 +45,17 @@ function App() {
   const copyToClipboard = async () => {
     try {
       if (outputRef.current) {
-        const text = outputRef.current.innerText;
-        await navigator.clipboard.writeText(text);
+        // Create a temporary div to hold the formatted content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = convertedText;
+        
+        // Copy as rich text
+        const clipboardItem = new ClipboardItem({
+          'text/html': new Blob([tempDiv.outerHTML], { type: 'text/html' }),
+          'text/plain': new Blob([tempDiv.innerText], { type: 'text/plain' })
+        });
+        
+        await navigator.clipboard.write([clipboardItem]);
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
       }
